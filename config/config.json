@@ -1,22 +1,22 @@
 {
   "development": {
-    "username": "endy",
-    "password": "root",
-    "database": "harvest_moon",
+    "username": "damai",
+    "password": "glints",
+    "database": "blog",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
-    "username": "endy",
-    "password": "root",
-    "database": "harvest_moon",
+    "username": "damai",
+    "password": "glints",
+    "database": "blog",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
-    "username": "endy",
-    "password": "root",
-    "database": "harvest_moon",
+    "username": "damai",
+    "password": "glints",
+    "database": "blog",
     "host": "localhost",
     "dialect": "postgres"
   }

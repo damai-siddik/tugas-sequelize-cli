@@ -1,46 +1,45 @@
 const express = require('express')
 
-const { Animal: AnimalModel, Farm: FarmModel, User: UserModel } = require('./models')
-
+const {Comment: CommentModel, Post: PostModel, User: UserModel} = require('./models');
 
 const app = express()
 
 app.get('/users', async (req, res) => {
 
-  // make realtion 1 : M, user -> Farm
-  UserModel.hasMany(FarmModel, {
+  // make realtion 1 : M, user -> post
+  UserModel.hasMany(PostModel, {
     foreignKey: 'userId',
     sourceKey: 'id',
-    as: 'farms'
+    as: 'posts'
   })
 
-  FarmModel.belongsTo(UserModel, {
+  PostModel.belongsTo(UserModel, {
     foreignKey: 'userId',
     sourceKey: 'id',
-    as: 'farms'
+    as: 'posts'
   })
 
-  // make realtion 1 : M, Farm -> Animal
-  FarmModel.hasMany(AnimalModel, {
-    foreignKey: 'farmId',
+  // make realtion 1 : M,   Post -> Comment
+  PostModel.hasMany(CommentModel, {
+    foreignKey: 'postId',
     sourceKey: 'id',
-    as: 'animals'
+    as: 'comments'
   })
 
-  AnimalModel.belongsTo(FarmModel, {
-    foreignKey: 'farmId',
+  CommentModel.belongsTo(PostModel, {
+    foreignKey: 'postId',
     sourceKey: 'id',
-    as: 'animals'
+    as: 'comments'
   })
 
   const users = await UserModel.findAll({
     where: { id: 2 },
     include: {
-      model: FarmModel,
-      as: 'farms',
+      model: PostModel,
+      as: 'posts',
       include: {
-        model: AnimalModel,
-        as: 'animals'
+        model: CommentModel,
+        as: 'comments'
       }
     }
   })

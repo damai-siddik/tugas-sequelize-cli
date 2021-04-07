@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -14,9 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    // firstName: DataTypes.STRING,
+    // lastName: DataTypes.STRING,
+    // email: DataTypes.STRING
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    name: DataTypes.STRING,
+    address: DataTypes.STRING,
+    posts: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'User',
